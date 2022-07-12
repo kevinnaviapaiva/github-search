@@ -30,4 +30,9 @@ export const API = {
       return `${URL_BASE.BASE}/users/${id}`;
     },
   },
+  RATE_LIMIT: {
+    RATE_LIMIT: () => {
+      return `${URL_BASE.BASE}/rate_limit`
+    }
+  }
 }
