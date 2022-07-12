@@ -1,7 +1,9 @@
 import { Redirect, Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { Search } from './Search/Search';
+import { SearchView } from './Search/Search';
 import { Navbar } from './Navbar/Navbar';
+import { UserView } from './User/UserView';
+import { RepositoryView } from './Repository/RepositoryView';
 
 export const history = createBrowserHistory();
 
@@ -15,16 +17,16 @@ export const MainLayout = () => {
         <div className="hero-body">
           <Switch>
             <Route exact path="/">
-              <Redirect to="/search" />
+              <Redirect to="/search/users" />
             </Route>
-            <Route path="/search">
-              <Search />
+            <Route path="/search/:type">
+              <SearchView />
             </Route>
-            <Route exact path="/user">
-              <Search />
+            <Route exact path="/user/:id">
+              <UserView />
             </Route>
-            <Route exact path="/repository">
-              <Search />
+            <Route exact path="/repos/:owner/:id/">
+              <RepositoryView />
             </Route>
             <Redirect to="/error" />
           </Switch>
