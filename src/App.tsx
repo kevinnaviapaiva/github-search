@@ -1,10 +1,8 @@
-import './App.css';
-import 'bulma/css/bulma.min.css';
-import { Navbar } from './components/Navbar/Navbar';
-import { Search } from './components/Search/Search';
+import './App.scss';
+import { MainLayout } from './components/MainLayout';
 
 export const App = () => {
-  return (
+  /*return (
     <div className="hero">
       <div className="hero-head">
         <Navbar />
@@ -13,6 +11,9 @@ export const App = () => {
         <Search />
       </div>
     </div>
+  );*/
+  return (
+    <MainLayout />
   );
 }
 
