@@ -1,5 +1,4 @@
-import './App.css';
-import 'bulma/css/bulma.min.css';
+import './App.scss';
 import { MainLayout } from './components/MainLayout';
 
 export const App = () => {
