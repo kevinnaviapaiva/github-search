@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { useRateLimit } from "../../hooks/rateLimit";
 import { useUser } from "../../hooks/user";
-import { Card, Col, Image, Row, Subtitle, Title } from "../bulma";
-import { FormatListItem } from "../List/List";
+import { Button, Card, Col, Image, Row, Subtitle, Title } from "../bulma";
 
 export const UserView = () => {
   const paths = useLocation().pathname.split('/');
   const userId = paths[paths.length - 1];
+
+  const history = useHistory();
 
   const { 
     user, 
@@ -19,15 +21,18 @@ export const UserView = () => {
     loadUserFollowing, 
   } = useUser(userId);
 
+  const { rateLimit, getRateLimit } = useRateLimit();
+
   useEffect(() => {
-    loadUser(() => {
+    loadUser(userId, () => {
       loadUserRepositories();
       loadUserFollowers();
       loadUserFollowing();
+      getRateLimit();
+    }, () => {
+      getRateLimit();
     });
-  }, [loadUser, loadUserRepositories]);
-
-  console.log(userFollowers);
+  }, []);
 
   return (
     <div>
@@ -36,7 +41,7 @@ export const UserView = () => {
           <div className="level">
             <div className="level-left">
               <div className="level-item is-hero-avatar-item">
-                <Image alt={user.name} isUserAvatar isRounded src={user.avatar_url}/>
+                <Image square={128} alt={user.name} isUserAvatar isRounded src={user.avatar_url}/>
               </div>
               <div className="level-item is-hero-content-item">
                 <div>
@@ -46,7 +51,9 @@ export const UserView = () => {
               </div>
             </div>
             <div className="level-right">
-
+              <a href={user.html_url}>
+              <Button className="is-link">Go to GitHub Profile</Button>
+              </a>
             </div>
           </div>
         </div>
@@ -112,6 +119,20 @@ export const UserView = () => {
                               <strong>{repo.name}</strong>
                             </p>
                             <div>{repo.description}</div>
+                            <div className="level is-mobile">
+                              <div className="level-right">
+                                <div className="level-item">
+                                  <Button 
+                                    className="is-link"
+                                    onClick={() => {
+                                      history.push(`/repos/${user.login}/${repo.name}`)
+                                    }}
+                                  >
+                                    See more
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </article>
@@ -138,6 +159,20 @@ export const UserView = () => {
                               <strong>{user.login}</strong>
                             </p>
                           </div>
+                          <div className="level is-mobile">
+                            <div className="level-right">
+                              <div className="level-item">
+                                <Button 
+                                  className="is-link"
+                                  onClick={() => {
+                                    history.push(`/user/${user.login}`)
+                                  }}
+                                >
+                                  View
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </article>
                     ))
@@ -162,6 +197,20 @@ export const UserView = () => {
                             <p className="media-meta">
                               <strong>{user.login}</strong>
                             </p>
+                          </div>
+                          <div className="level is-mobile">
+                            <div className="level-right">
+                              <div className="level-item">
+                              <Button 
+                                  className="is-link"
+                                  onClick={() => {
+                                    history.push(`/user/${user.login}`)
+                                  }}
+                                >
+                                  View
+                                </Button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </article>
