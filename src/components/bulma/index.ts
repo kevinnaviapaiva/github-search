@@ -9,6 +9,7 @@ import Hero from './Layout/Hero';
 import Level from './Layout/Level';
 import Media from './Layout/Media';
 import { Icon, IconText } from './Elements/Icon';
+import { Tabs } from './Components/Tabs';
 
 export { 
   Box,
@@ -24,5 +25,6 @@ export {
   Row,
   Select,
   Subtitle,
+  Tabs,
   Title,
 };
