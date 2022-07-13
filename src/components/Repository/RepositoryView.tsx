@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { useRepository } from "../../hooks/repository";
 import { Card, Col, Hero, Level, Row, Subtitle, Title } from "../bulma";

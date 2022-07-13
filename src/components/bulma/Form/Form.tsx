@@ -4,15 +4,16 @@ export interface SelectOption {
 }
 
 interface SelectProps {
+  className?: string,
   onChange?: Function,
   options: SelectOption[],
   value?: string,
 }
 
-export const Select = ({ onChange, options, value } : SelectProps) => {  
+export const Select = ({ className, onChange, options, value } : SelectProps) => {  
   return (
     <div className="control">
-      <div className="select">
+      <div className={`select ${className ?? ''}`}>
         <select value={value} onChange={e => {
             if(onChange) {
               onChange(e);

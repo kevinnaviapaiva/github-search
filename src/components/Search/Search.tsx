@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSearch } from '../../hooks/search';
-import { Button, Image, Select, Subtitle } from '../bulma';
-import { SelectOption } from '../bulma/Form/Form';
+import { Button, Hero, Image, Subtitle } from '../bulma';
+import { Tabs, TabsOption } from '../bulma/Components/Tabs';
 import { FormatListItem, List } from '../List/List';
 
 export const SearchView = () => {
   const paths = useLocation().pathname.split('/');
-  const searchType = paths[paths.length - 1];
+  const [searchType, setSearchType] = useState<string>(paths[paths.length - 1]);
   const { data, loadData } = useSearch(searchType);
   const history = useHistory();
 
@@ -70,52 +70,57 @@ export const SearchView = () => {
     span: 4,
   }
   
-  const options: SelectOption[] = [
+  const options: TabsOption[] = [
     {
       label: 'Users',
-      value: 'users',
+      tab: 'users',
     },
     {
       label: 'Repos',
-      value: 'repositories',
+      tab: 'repositories',
     },
   ];
 
   return (
     <div className="container">
-      <div className="field has-addons">
-        <Select 
-          options={options}
-          onChange={(e: any) => {
-            setSearchText('');
-            history.push(`/search/${e.target.value}`);
-          }}
-          value={searchType}
-        />
-        <div className="control">
-          <input 
-            className="input is-info is-normal is-focused" 
-            type="text" 
-            placeholder={`Search ${searchType}...`}
-            onChange={e => {
-              setSearchText(e.target.value);
-            }}
-            value={searchText}
-          />
-        </div>
-        <div className="control">
-          <Button
-            className="is-link"
-            onClick={() => {
-              if(searchText !== '') {
-                loadData(searchText);
-              }
-            }}
-          >
-            Search
-          </Button>
-        </div>
-      </div>
+      <Tabs 
+        className="is-centered is-boxed mt-4" 
+        onClick={(tab: TabsOption) => {
+          setSearchText('');
+          setSearchType(tab.tab);
+          history.push(`/search/${tab.tab}`);
+        }} 
+        options={options}
+      />
+      <Hero className="is-small">
+        <Hero.Body>
+          <div className="field is-grouped">
+            <div className="control is-expanded">
+              <input 
+                className="input is-info is-normal is-focused" 
+                type="text" 
+                placeholder={`Search ${searchType}...`}
+                onChange={e => {
+                  setSearchText(e.target.value);
+                }}
+                value={searchText}
+              />
+            </div>
+            <div className="control">
+              <Button
+                className="is-primary"
+                onClick={() => {
+                  if(searchText !== '') {
+                    loadData(searchText);
+                  }
+                }}
+              >
+                Search
+              </Button>
+            </div>
+          </div>
+        </Hero.Body>
+      </Hero>
       <div>
         <List data={data} format={searchType === 'users' ? formatUser : formatRepository} />
       </div>
