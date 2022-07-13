@@ -9,8 +9,11 @@ export const UserView = () => {
   const userId = paths[paths.length - 1];
 
   const [showRepo, setShowRepo] = useState<boolean>(false);
+  const [loadedRepo, setloadedRepo] = useState<boolean>(false);
   const [showFollowers, setShowFollowers] = useState<boolean>(false);
+  const [loadedFollowers, setloadedFollowers] = useState<boolean>(false);
   const [showFollowing, setShowFollowing] = useState<boolean>(false);
+  const [loadedFollowing, setloadedFollowing] = useState<boolean>(false);
 
   const history = useHistory();
 
@@ -28,32 +31,36 @@ export const UserView = () => {
   const { rateLimit, getRateLimit } = useRateLimit();
 
   useEffect(() => {
-    loadUser(userId, () => {
-      loadUserRepositories();
-    });
-  }, []);
+    loadUser(userId);
+  }, [loadUser]);
 
   useEffect(() => {
-    if(showRepo) {
-      loadUserRepositories();
+    if(!loadedRepo && showRepo) {
+      loadUserRepositories(() => {
+        setloadedRepo(true);
+      });
     }
-  }, [loadUserRepositories, showRepo]);
+  }, [loadUserRepositories, loadedRepo, showRepo]);
 
   useEffect(() => {
-    if(showFollowers) {
-      loadUserFollowers();
+    if(!loadedFollowers && showFollowers) {
+      loadUserFollowers(() => {
+        setloadedFollowers(true);
+      });
     }
-  }, [loadUserFollowers, showFollowers]);
+  }, [loadUserFollowers, loadedFollowers, showFollowers]);
 
   useEffect(() => {
-    if(showFollowing) {
-      loadUserFollowing();
+    if(!loadedFollowing && showFollowing) {
+      loadUserFollowing(() => {
+        setloadedFollowing(true);
+      });
     }
-  }, [loadUserFollowing, showFollowing]);
+  }, [loadUserFollowing, loadedFollowing, showFollowing]);
 
   return (
     <div>
-      <Hero className="is-hero-bar is-main-hero">
+      <Hero className="is-hero-bar is-main-hero is-small">
         <Hero.Body>
           <Level>
             <Level.Left>
@@ -123,7 +130,7 @@ export const UserView = () => {
         <Row isDesktop>
           <Col>
             <div className="card">
-              <Card.Header title="Repositories" icon={!showRepo && <Icon icon="fas solid fa-circle-plus"/>} onClick={() => { setShowRepo(true)}}/>
+              <Card.Header title="Repositories" icon={<Icon icon={`fas solid fa-lg fa-circle-${showRepo ? 'minus' : 'plus'}`}/>} onClick={() => { setShowRepo(prevState => !prevState) }}/>
               {showRepo && <Card.Content>
                 <Media.List>
                   {
@@ -160,7 +167,7 @@ export const UserView = () => {
           </Col>
           <Col>
             <div className="card is-scrollable-height-medium">
-              <Card.Header title="Followers" icon={!showFollowers && <Icon icon="fas solid fa-circle-plus"/>} onClick={() => { setShowFollowers(true)}}/>
+              <Card.Header title="Followers" icon={<Icon icon={`fas solid fa-lg fa-circle-${showFollowers ? 'minus' : 'plus'}`}/>} onClick={() => { setShowFollowers(prevState => !prevState)}}/>
               {showFollowers && <Card.Content>
                 <Media.List>
                   {
@@ -199,7 +206,7 @@ export const UserView = () => {
           </Col>
           <Col>
             <div className="card is-scrollable-height-medium">
-              <Card.Header title="Following" icon={!showFollowing && <Icon icon="fas solid fa-circle-plus"/>} onClick={() => { setShowFollowing(true)}}/>
+              <Card.Header title="Following" icon={<Icon icon={`fas solid fa-lg fa-circle-${showFollowing ? 'minus' : 'plus'}`}/>} onClick={() => { setShowFollowing(prevState => !prevState)}}/>
               {showFollowing && <Card.Content>
                 <Media.List>
                   {

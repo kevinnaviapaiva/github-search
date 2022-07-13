@@ -10,6 +10,7 @@ import Level from './Layout/Level';
 import Media from './Layout/Media';
 import { Icon, IconText } from './Elements/Icon';
 import { Tabs } from './Components/Tabs';
+import { Message } from './Components/Message';
 
 export { 
   Box,
@@ -22,6 +23,7 @@ export {
   Image, 
   Level,
   Media,
+  Message,
   Row,
   Select,
   Subtitle,

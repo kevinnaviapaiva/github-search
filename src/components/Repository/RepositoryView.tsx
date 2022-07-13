@@ -20,7 +20,7 @@ export const RepositoryView = () => {
 
   return (
     <div>
-      <Hero className="is-hero-bar is-main-hero">
+      <Hero className="is-hero-bar is-main-hero is-small">
         <Hero.Body>
           <Level>
             <Level.Left>
@@ -94,82 +94,6 @@ export const RepositoryView = () => {
             </div>
           </div>
         </div>
-
-        <Row isDesktop>
-          <Col>
-            <div className="card">
-              <Card.Header title="Repositories" />
-              <Card.Content>
-                <div className="media-list">
-                  {/*
-                    userRepositories.map(repo => (
-                      <article className="media">
-                        <div className="media-content">
-                          <div className="content">
-                            <p className="media-meta">
-                              <strong>{repo.name}</strong>
-                            </p>
-                            <div>{repo.description}</div>
-                          </div>
-                        </div>
-                      </article>
-                    ))
-                    */}
-                </div>
-              </Card.Content>
-            </div>
-          </Col>
-          <Col>
-            <div className="card is-scrollable-height-medium">
-              <Card.Header title="Followers" />
-              <Card.Content>
-                <div className="media-list">
-                  {/*
-                    userFollowers.map(user => (
-                      <article className="media has-media-left">
-                        <div className="media-left">
-                          <Image src={user.avatar_url} square={64} isRounded/>
-                        </div>
-                        <div className="media-content">
-                          <div className="content">
-                            <p className="media-meta">
-                              <strong>{user.login}</strong>
-                            </p>
-                          </div>
-                        </div>
-                      </article>
-                    ))
-                    */}
-                </div>
-              </Card.Content>
-            </div>
-          </Col>
-          <Col>
-            <div className="card is-scrollable-height-medium">
-              <Card.Header title="Following" />
-              <Card.Content>
-                <div className="media-list">
-                  {/*
-                    userFollowing.map(user => (
-                      <article className="media has-media-left">
-                        <div className="media-left">
-                          <Image src={user.avatar_url} square={64} isRounded/>
-                        </div>
-                        <div className="media-content">
-                          <div className="content">
-                            <p className="media-meta">
-                              <strong>{user.login}</strong>
-                            </p>
-                          </div>
-                        </div>
-                      </article>
-                    ))
-                    */}
-                </div>
-              </Card.Content>
-            </div>
-          </Col>
-        </Row>
       </section>
     </div>
   )
