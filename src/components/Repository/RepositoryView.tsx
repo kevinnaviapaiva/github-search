@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useRepository } from "../../hooks/repository";
-import { Card, Col, Image, Row, Subtitle, Title } from "../bulma";
+import { Card, Col, Hero, Level, Row, Subtitle, Title } from "../bulma";
 
 export const RepositoryView = () => {
   const paths = useLocation().pathname.split('/');
@@ -20,76 +20,76 @@ export const RepositoryView = () => {
 
   return (
     <div>
-      <section className="hero is-hero-bar is-main-hero">
-        <div className="hero-body">
-          <div className="level">
-            <div className="level-left">
-              <div className="level-item is-hero-content-item">
+      <Hero className="is-hero-bar is-main-hero">
+        <Hero.Body>
+          <Level>
+            <Level.Left>
+              <Level.Item className="is-hero-content-item">
                 <div>
                   <Title size={2} isSpaced>{repository.name}</Title>
                   <Subtitle size={4} isSpaced>{repository?.owner?.login}</Subtitle>
                   <Subtitle size={5}>{repository?.description}</Subtitle>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </Level.Item>
+            </Level.Left>
+          </Level>
+        </Hero.Body>
+      </Hero>
       <section className="section is-main-section">
         <div className="tile is-ancestor has-text-centered is-family-code">
           <div className="tile is-parent">
             <div className="card tile is-child">
               <div className="card-content">
-                <div className="level is-mobile">
-                  <div className="level-item">
+                <Level className="is-mobile">
+                  <Level.Item>
                     <div className="is-widget-label">
                       <Subtitle size={3} isSpaced>Forks</Subtitle>
                       <Title size={1}>{repository.forks_count}</Title>
                     </div>
-                  </div>
-                </div>
+                  </Level.Item>
+                </Level>
               </div>
             </div>
           </div>
           <div className="tile is-parent">
             <div className="card tile is-child">
               <div className="card-content">
-                <div className="level is-mobile">
-                  <div className="level-item">
+                <Level className="is-mobile">
+                  <Level.Item>
                     <div className="is-widget-label">
                       <Subtitle size={3} isSpaced>Subscribers</Subtitle>
                       <Title size={1}>{repository.subscribers_count}</Title>
                     </div>
-                  </div>
-                </div>
+                  </Level.Item>
+                </Level>
               </div>
             </div>
           </div>
           <div className="tile is-parent">
             <div className="card tile is-child">
               <div className="card-content">
-                <div className="level is-mobile">
-                  <div className="level-item">
+                <Level className="is-mobile">
+                  <Level.Item>
                     <div className="is-widget-label">
                       <Subtitle size={3} isSpaced>Stars</Subtitle>
                       <Title size={1}>{repository.stargazers_count}</Title>
                     </div>
-                  </div>
-                </div>
+                  </Level.Item>
+                </Level>
               </div>
             </div>
           </div>
           <div className="tile is-parent">
             <div className="card tile is-child">
               <div className="card-content">
-                <div className="level is-mobile">
-                  <div className="level-item">
+                <Level className="is-mobile">
+                  <Level.Item>
                     <div className="is-widget-label">
                       <Subtitle size={3} isSpaced>Size</Subtitle>
                       <Title size={1}>{repository.size}</Title>
                     </div>
-                  </div>
-                </div>
+                  </Level.Item>
+                </Level>
               </div>
             </div>
           </div>
