@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { API } from '../settings/server.conf';
 import { Repository } from '../types/RepositoryType';
 import { User } from '../types/UserTypes';
@@ -7,6 +7,11 @@ import { useFetch } from "./fetch";
 export const useSearch = (searchType: string) => {
   const [get] = useFetch();
   const [data, setData] = useState<Array<User | Repository>>([]);
+
+  useEffect(() => {
+    setData([]);
+  }, [searchType]);
+
   return {
     data,
     loadData: useCallback((search: string) => {

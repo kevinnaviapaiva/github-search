@@ -4,17 +4,18 @@ import { SearchView } from './Search/Search';
 import { Navbar } from './Navbar/Navbar';
 import { UserView } from './User/UserView';
 import { RepositoryView } from './Repository/RepositoryView';
+import { Hero } from './bulma';
 
 export const history = createBrowserHistory();
 
 export const MainLayout = () => {
   return (  
-    <div className="hero">
+    <Hero>
       <Router history={history}>
-        <div className="hero-head">
+        <Hero.Head>
           <Navbar />
-        </div>
-        <div className="hero-body">
+        </Hero.Head>
+        <Hero.Body>
           <Switch>
             <Route exact path="/">
               <Redirect to="/search/users" />
@@ -30,8 +31,8 @@ export const MainLayout = () => {
             </Route>
             <Redirect to="/error" />
           </Switch>
-        </div>
+        </Hero.Body>
       </Router>
-    </div>
+    </Hero>
   )
 }

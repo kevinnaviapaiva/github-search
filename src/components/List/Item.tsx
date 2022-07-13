@@ -1,6 +1,4 @@
-import { render } from "@testing-library/react";
-import { useHistory } from "react-router-dom";
-import { Card, Image, Subtitle, Title } from "../bulma";
+import { Card, Media, Subtitle, Title } from "../bulma";
 import { FormatListItem } from "./List";
 
 interface ItemProps {
@@ -9,8 +7,6 @@ interface ItemProps {
 }
 
 export const Item = ({ data, format } : ItemProps) => {
-  const history = useHistory();
-  console.log(format);
   return (
     <div className={`column${format.span ? ` is-${format.span}` : ''}`}>
       <Card>
@@ -18,13 +14,13 @@ export const Item = ({ data, format } : ItemProps) => {
           {format.image?.render ? format.image?.render(data) : <></>}
         </Card.Image>
         <Card.Content>
-          <div className="media">
-            <div className="media-content">
+          <Media>
+            <Media.Content>
               <Title size={4}>{data?.[format.title.dataIndex]}</Title> 
               {format.subtitle?.render && format.subtitle?.render(data)}
               {!format.subtitle?.render && format.subtitle && <Subtitle>{data?.[format?.subtitle?.dataIndex]}</Subtitle>}
-            </div>
-          </div>
+            </Media.Content>
+          </Media>
         </Card.Content>
         <Card.Footer>
           {format.footer.map(item => (

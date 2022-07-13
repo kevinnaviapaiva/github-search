@@ -1,3 +1,4 @@
+import { Button } from "../Elements/Button";
 import { Title } from "../Title/Title";
 
 const Card = ({ children } : { children: React.ReactNode}) => {
@@ -16,15 +17,13 @@ const Content = ({ children } : { children: React.ReactNode }) => {
   );
 };
 
-const Header = ({ icon, title } : { icon?: React.ReactNode, title: string }) => {
+const Header = ({ icon, title, onClick } : { icon?: React.ReactNode, onClick?: Function, title: string }) => {
   return (
     <div className="card-header">
-      <p className="card-header-icon">
+      <p className="card-header-title">
         <Title size={4}>{title}</Title>
       </p>
-      {icon && <button className="card-header-icon">
-        {icon}
-      </button>}
+      {icon && <Button className="card-header-icon" onClick={() => { onClick && onClick() }}>{icon}</Button>}
     </div>
   );
 };

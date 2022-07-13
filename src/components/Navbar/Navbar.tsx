@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Image, Title } from '../bulma';
 
 export const Navbar = () => {
