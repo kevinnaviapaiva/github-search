@@ -23,19 +23,22 @@ export const useUser = (userId: string) => {
         onError && onError();
       })
     }, [get]),
-    loadUserRepositories: useCallback(() => {
+    loadUserRepositories: useCallback((onSucceed?: Function) => {
       get(API.USER.REPOSITORIES(userId), (data: any) => {
         setUserRepositories(data ?? []);
+        onSucceed && onSucceed();
       })
     }, [get, setUserRepositories, userId]),
-    loadUserFollowers: useCallback(() => {
+    loadUserFollowers: useCallback((onSucceed?: Function) => {
       get(API.USER.FOLLOWERS(userId), (data: any) => {
         setUserFollowers(data ?? []);
+        onSucceed && onSucceed();
       })
     }, [get, setUserFollowers, userId]),
-    loadUserFollowing: useCallback(() => {
+    loadUserFollowing: useCallback((onSucceed?: Function) => {
       get(API.USER.FOLLOWING(userId), (data: any) => {
         setUserFollowing(data ?? []);
+        onSucceed && onSucceed();
       })
     }, [get, setUserFollowing, userId]),
   }

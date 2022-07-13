@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSearch } from '../../hooks/search';
-import { Button, Hero, Image, Subtitle } from '../bulma';
+import { Button, Hero, Image, Message, Subtitle } from '../bulma';
 import { Tabs, TabsOption } from '../bulma/Components/Tabs';
 import { FormatListItem, List } from '../List/List';
 
@@ -119,6 +119,7 @@ export const SearchView = () => {
               </Button>
             </div>
           </div>
+          <Message className="" title="Warning" message="Search text cannot be empty" />
         </Hero.Body>
       </Hero>
       <div>

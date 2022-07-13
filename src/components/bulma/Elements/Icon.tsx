@@ -1,6 +1,11 @@
-export const Icon = ({ icon } : { icon: string }) => {
+interface IconProps {
+  className?: string,
+  icon: string,
+}
+
+export const Icon = ({ className, icon } : IconProps) => {
   return (
-    <span className="icon">
+    <span className={`icon ${className ?? ''}`}>
       <i className={icon}/>
     </span>
   );
