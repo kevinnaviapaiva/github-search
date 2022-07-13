@@ -1,12 +1,13 @@
 interface TitleProps {
-  children?: string | number,
+  children?: string | number | (JSX.Element | string)[],
+  className?: string,
   isSpaced?: boolean,
   margin?: string,
   size?: 1 | 2 | 3 | 4 | 5 | 6,
 }
 
-export const Title = ({ children, isSpaced, margin, size } : TitleProps) => (
-  <div className={`title${size ? ` is-size-${size}` : ''} ${margin ?? ''}${isSpaced ? ' is-spaced' : ''}`}>
+export const Title = ({ children, className, isSpaced, margin, size } : TitleProps) => (
+  <div className={`title ${className ?? ''}${size ? ` is-size-${size}` : ''} ${margin ?? ''}${isSpaced ? ' is-spaced' : ''}`}>
     {children}
   </div>
 );
