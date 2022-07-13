@@ -1,4 +1,4 @@
-import { Row } from "../bulma"
+import { Hero, Row } from "../bulma"
 import { Item } from "./Item"
 
 interface ListItemPart {
@@ -21,12 +21,12 @@ interface ListProps {
 
 export const List = ({ data, format } : ListProps) => {
   return (
-      <div className="hero">
+      <Hero>
         <Row multiLine>
           {data.map(item => (
             <Item data={item} format={format} />
           ))}
         </Row>
-      </div>
+      </Hero>
   )
 }
