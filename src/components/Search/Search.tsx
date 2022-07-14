@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSearch } from '../../hooks/search';
-import { Button, Hero, Image, Message, Subtitle } from '../bulma';
+import { Button, Container, Hero, Image, Message, Subtitle } from '../bulma';
 import { Tabs, TabsOption } from '../bulma/Components/Tabs';
 import { FormatListItem, List } from '../List/List';
 
 export const SearchView = () => {
   const paths = useLocation().pathname.split('/');
   const [searchType, setSearchType] = useState<string>(paths[paths.length - 1]);
+  const [showMessage, setShowMessage] = useState<boolean>(false);
   const { data, loadData } = useSearch(searchType);
   const history = useHistory();
 
@@ -20,8 +21,9 @@ export const SearchView = () => {
     image: {
       dataIndex: 'avatar_url',
       render: (data: any) => {
-        console.log(data);
-        return <Image isRounded square={128} src={data?.avatar_url} />
+        return (
+          <Image className="is-centered" isRounded square={128} src={data?.avatar_url} />
+        );
       }
     },
     body: [],
@@ -29,14 +31,13 @@ export const SearchView = () => {
       {
         dataIndex: 'url',
         render: (data: any) => (
-          <button 
-            className="button is-link"
+          <Button className="is-primary has-text-black"
             onClick={() => {
               history.push(`/user/${data.login}`)
             }}
           >
             View More...
-          </button>
+          </Button>
         ),
       }
     ],
@@ -57,14 +58,14 @@ export const SearchView = () => {
     footer: [{
       dataIndex: 'url',
       render: (data: any) => (
-        <button 
-          className="button is-link"
+        <Button 
+          className="is-primary has-text-black"
           onClick={() => {
             history.push(`/repos/${data.owner.login}/${data.name}`)
           }}
         >
-          View More...
-        </button>
+          View Details
+        </Button>
       ),
     }],
     span: 4,
@@ -82,7 +83,7 @@ export const SearchView = () => {
   ];
 
   return (
-    <div className="container">
+    <Container>
       <Tabs 
         className="is-centered is-boxed mt-4" 
         onClick={(tab: TabsOption) => {
@@ -97,21 +98,23 @@ export const SearchView = () => {
           <div className="field is-grouped">
             <div className="control is-expanded">
               <input 
-                className="input is-info is-normal is-focused" 
+                className="input is-primary is-normal is-focused" 
                 type="text" 
                 placeholder={`Search ${searchType}...`}
                 onChange={e => {
                   setSearchText(e.target.value);
+                  setShowMessage(false);
                 }}
                 value={searchText}
               />
             </div>
             <div className="control">
               <Button
-                className="is-primary"
+                className="is-primary has-text-black"
                 onClick={() => {
-                  if(searchText !== '') {
-                    loadData(searchText);
+                  loadData(searchText);
+                  if(searchText === '') {
+                    setShowMessage(true);
                   }
                 }}
               >
@@ -119,12 +122,19 @@ export const SearchView = () => {
               </Button>
             </div>
           </div>
-          <Message className="" title="Warning" message="Search text cannot be empty" />
+          {showMessage && <Message 
+            onClose={() => setShowMessage(false)}
+            className="is-primary" 
+            title="Empty Search Warning" 
+            message="Search text must not be empty" 
+          />}
         </Hero.Body>
       </Hero>
-      <div>
-        <List data={data} format={searchType === 'users' ? formatUser : formatRepository} />
-      </div>
-    </div>
+      <Hero>
+        <Hero.Body>
+          <List data={data} format={searchType === 'users' ? formatUser : formatRepository} />
+        </Hero.Body>
+      </Hero>
+    </Container>
   )
 }

@@ -1,4 +1,4 @@
-import { Card, Media, Subtitle, Title } from "../bulma";
+import { Card, Content, Media, Subtitle, Title } from "../bulma";
 import { FormatListItem } from "./List";
 
 interface ItemProps {
@@ -10,10 +10,10 @@ export const Item = ({ data, format } : ItemProps) => {
   return (
     <div className={`column${format.span ? ` is-${format.span}` : ''}`}>
       <Card>
-        <Card.Image>
-          {format.image?.render ? format.image?.render(data) : <></>}
-        </Card.Image>
         <Card.Content>
+          <Content>
+            {format.image?.render ? format.image?.render(data) : <></>}
+          </Content>
           <Media>
             <Media.Content>
               <Title size={4}>{data?.[format.title.dataIndex]}</Title> 

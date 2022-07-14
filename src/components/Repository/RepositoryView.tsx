@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { useRepository } from "../../hooks/repository";
-import { Card, Col, Hero, Level, Row, Subtitle, Title } from "../bulma";
+import { Button, Hero, Level, Subtitle, Title } from "../bulma";
 
 export const RepositoryView = () => {
   const paths = useLocation().pathname.split('/');
@@ -32,6 +32,11 @@ export const RepositoryView = () => {
                 </div>
               </Level.Item>
             </Level.Left>
+            <Level.Right>
+              <a href={repository.html_url}>
+              <Button className="is-primary has-text-black">Go to GitHub Repository</Button>
+              </a>
+            </Level.Right>
           </Level>
         </Hero.Body>
       </Hero>
