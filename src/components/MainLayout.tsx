@@ -1,16 +1,13 @@
-import { Redirect, Router, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { Redirect, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { SearchView } from './Search/Search';
 import { Navbar } from './Navbar/Navbar';
 import { UserView } from './User/UserView';
 import { RepositoryView } from './Repository/RepositoryView';
 import { Error } from './Error/Error';
 
-export const history = createBrowserHistory();
-
 export const MainLayout = () => {
   return (  
-    <Router history={history}>
+    <Router>
       {/*<Modal active={true}>
         <Media>
           <Media.Content>
