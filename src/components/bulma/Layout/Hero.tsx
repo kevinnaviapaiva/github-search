@@ -1,5 +1,5 @@
 interface HeroProps {
-  children?: JSX.Element | JSX.Element[] | undefined | string,
+  children?: JSX.Element | (JSX.Element | false)[] | undefined | string,
   className?: string, 
 }
 

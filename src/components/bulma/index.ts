@@ -11,12 +11,17 @@ import Media from './Layout/Media';
 import { Icon, IconText } from './Elements/Icon';
 import { Tabs } from './Components/Tabs';
 import { Message } from './Components/Message';
+import { Modal } from './Components/Modal';
+import { Content } from './Elements/Content';
+import { Container } from './Layout/Container';
 
 export { 
   Box,
   Button,
   Card,
   Column as Col,
+  Container,
+  Content,
   Hero, 
   Icon,
   IconText,
@@ -24,6 +29,7 @@ export {
   Level,
   Media,
   Message,
+  Modal,
   Row,
   Select,
   Subtitle,

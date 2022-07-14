@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import { Button } from "../Elements/Button";
 import { Title } from "../Title/Title";
 
@@ -28,9 +29,9 @@ const Header = ({ icon, title, onClick } : { icon?: React.ReactNode, onClick?: F
   );
 };
 
-const Image = ({ children } : { children: React.ReactNode }) => {
+const Image = ({ children, className } : PropsWithChildren<{ className: string }>) => {
   return (
-    <div className="card-image">
+    <div className={`card-image ${className ?? ''}`}>
       {children}
     </div>
   );
