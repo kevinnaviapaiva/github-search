@@ -1,6 +1,6 @@
 # GITHUB SEARCH APPLICATION
 
-![Zebra Logo](https://www.zebra.com/us/en/header/jcr:content/mainpar/header/navigationComponent/logoImage.adapt.1280.png/1425666050944.png)
+![GitHubSearch](https://cdn.hashnode.com/res/hashnode/image/upload/v1654845767617/RuHOJDaVPJ.png)
 
 ### REQUIREMENTS
 
