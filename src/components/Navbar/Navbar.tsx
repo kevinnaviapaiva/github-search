@@ -2,7 +2,7 @@ import { Image, Title } from '../bulma';
 
 export const Navbar = () => {
   return (
-    <nav className="navbar has-background-primary-dark">
+    <nav className="navbar is-primary">
       <div className="navbar-brand">
         <a href="/">
           <Image className="ml-5 mt-5" square={48} src="/images/github-icon.svg"/>

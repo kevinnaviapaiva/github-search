@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { API } from '../settings/server.conf';
 import { Repository } from '../types/RepositoryType';
 import { DEFAULT_USER, User } from '../types/UserTypes';
@@ -10,6 +10,13 @@ export const useUser = (userId: string) => {
   const [userRepositories, setUserRepositories] = useState<Repository[]>([]);
   const [userFollowers, setUserFollowers] = useState<User[]>([]);
   const [userFollowing, setUserFollowing] = useState<User[]>([]);
+
+  useEffect(() => {
+    setUserRepositories([]);
+    setUserFollowers([]);
+    setUserFollowing([]);
+  }, [userId]);
+  
   return {
     user,
     userRepositories,

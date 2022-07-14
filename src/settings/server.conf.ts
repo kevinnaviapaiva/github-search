@@ -13,7 +13,7 @@ export const API = {
   },
   SEARCH: {
     SEARCH: (searchType: string, queryText: string) => {
-      return `${URL_BASE.BASE}/search/${searchType}?q=${queryText}`;
+      return `${URL_BASE.BASE}/search/${searchType}?q=${queryText} ${searchType === 'users' ? 'in:login' : 'in:name'}`;
     },
   },
   USER: {
