@@ -7,7 +7,7 @@ import { Error } from './Error/Error';
 
 export const MainLayout = () => {
   return (  
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       {/*<Modal active={true}>
         <Media>
           <Media.Content>
